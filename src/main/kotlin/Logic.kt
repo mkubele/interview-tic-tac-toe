@@ -18,14 +18,14 @@ class Logic(
 			}
 			board.draw()
 			turn = if (turn == player1) player2 else player1
-			println("$turn turn" )
+			println("Player ${turn.character} turn")
 		}
 	}
 
 	fun gameEnded(player: Player): Boolean {
 		return when {
 			isWinner() -> {
-				println("$player won!")
+				println("${player.character} won!")
 				true
 			}
 
@@ -39,7 +39,16 @@ class Logic(
 	}
 
 	fun isWinner(): Boolean {
-		return false
+		val matrix = board.matrix
+
+		return when {
+			matrix.any { row -> row.all { it == turn.character } } -> true // rows
+			(0 until 3).any { col -> matrix.all { row -> row[col] == turn.character } } -> true // columns
+			(0 until 3).all { i -> matrix[i][i] == turn.character } -> true // diagonal
+			(0 until 3).all { i -> matrix[i][2 - i] == turn.character } -> true // opposite diagonal
+
+			else -> false
+		}
 	}
 
 	fun isDraw(): Boolean = board.hasEmptyFields().not()

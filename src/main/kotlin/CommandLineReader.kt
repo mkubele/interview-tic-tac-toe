@@ -9,10 +9,10 @@ class CommandLineReader {
 
 		while (!valuesEnteredCorrect) {
 			println("enter row:")
-			col = readln().toInt() - 1
+			row = readln().toInt() - 1
 
 			println("enter col:")
-			row = readln().toInt() - 1
+			col = readln().toInt() - 1
 			if (col > -1 && col < 3 && row > -1 && row < 3)
 				valuesEnteredCorrect = true
 			else println("Values not entered correctly, please try again")
