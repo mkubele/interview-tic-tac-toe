@@ -24,7 +24,7 @@ jobs:
           distribution: corretto
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         env:
           GRADLE_BUILD_ACTION_CACHE_DEBUG_ENABLED: true
         with:
