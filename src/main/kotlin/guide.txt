@@ -1,0 +1,4 @@
+board - handling the board and updating the state based on the input
+command-line reader
+game logic
+player - holds X or O

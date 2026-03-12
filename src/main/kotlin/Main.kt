@@ -10,26 +10,20 @@ val matrix = arrayOf(
 const val o = 'O'
 const val x = 'X'
 fun main() {
+	val board = Board()
+	val commandLineReader = CommandLineReader()
 
-    var turn = o
-    val matrixEmpty = doesMatrixContainsEmptyChars()
+	val player1 = Player(Character.X)
+	val player2 = Player(Character.O)
 
-    while (matrixEmpty) {
-        println("It's $turn's turn")
-        val input = readInputs()
-        matrix[input.first][input.second] = turn
-        printTicTacToe()
-        val winner = determineWinner()
-        if (winner != ' ') {
-            println("$winner won the game")
-            break
-        }
-        if (!doesMatrixContainsEmptyChars()) {
-            println("Game tied")
-            break
-        }
-        turn = if (turn == o) x else o
-    }
+	val logic = Logic(
+		board = board,
+		player1 = player1,
+		player2 = player2,
+		commandLineReader = commandLineReader
+	)
+
+	logic.gameLoop()
 }
 
 fun determineWinner(): Char {
@@ -82,10 +76,10 @@ fun readInputs(): Pair<Int, Int> {
 
     while (!valuesEnteredCorrect) {
         println("enter row:")
-        col = readLine()!!.toInt() - 1
+        col = readln().toInt() - 1
 
         println("enter col:")
-        row = readLine()!!.toInt() - 1
+        row = readln().toInt() - 1
         if (col > -1 && col < 3 && row > -1 && row < 3 && matrix[row][col] == ' ')
             valuesEnteredCorrect = true
         else println("Values not entered correctly, please try again")
